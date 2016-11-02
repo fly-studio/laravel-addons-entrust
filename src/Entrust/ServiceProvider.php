@@ -8,9 +8,9 @@
  * @package Addons\Entrust
  */
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as SP;
 
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends SP
 {
     /**
      * Indicates if loading of the provider is deferred.
