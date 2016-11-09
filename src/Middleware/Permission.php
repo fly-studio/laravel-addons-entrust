@@ -1,4 +1,5 @@
-<?php namespace Addons\Entrust\Middleware;
+<?php
+namespace Addons\Entrust\Middleware;
 
 /**
  * This file is part of Entrust,
@@ -11,7 +12,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Role
+class Permission
 {
 	protected $auth;
 
@@ -30,13 +31,14 @@ class Role
 	 *
 	 * @param  \Illuminate\Http\Request $request
 	 * @param  Closure $next
-	 * @param  $roles
+	 * @param  $permissions
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, ...$roles)
+	public function handle($request, Closure $next, ...$permissions)
 	{
-		if ($this->auth->guest() || !$request->user()->hasRole($roles)) {
-			abort(403);
+		if ($this->auth->guest() || !$request->user()->can($permissions)) {
+			return (new \Addons\Core\Controllers\Controller())->failure('auth.failure_permission');
+			//abort(403);
 		}
 
 		return $next($request);

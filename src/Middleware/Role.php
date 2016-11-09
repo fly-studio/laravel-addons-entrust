@@ -11,7 +11,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Permission
+class Role
 {
 	protected $auth;
 
@@ -30,13 +30,14 @@ class Permission
 	 *
 	 * @param  \Illuminate\Http\Request $request
 	 * @param  Closure $next
-	 * @param  $permissions
+	 * @param  $roles
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, ...$permissions)
+	public function handle($request, Closure $next, ...$roles)
 	{
-		if ($this->auth->guest() || !$request->user()->can($permissions)) {
-			abort(403);
+		if ($this->auth->guest() || !$request->user()->hasRole($roles)) {
+			return (new \Addons\Core\Controllers\Controller())->failure('auth.failure_permission');
+			//abort(403);
 		}
 
 		return $next($request);

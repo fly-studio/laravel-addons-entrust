@@ -1,4 +1,5 @@
-<?php namespace Addons\Entrust\Middleware;
+<?php
+namespace Addons\Entrust\Middleware;
 
 /**
  * This file is part of Entrust,
@@ -38,7 +39,8 @@ class Ability
 	public function handle($request, Closure $next, $roles, $permissions, $validateAll = false)
 	{
 		if ($this->auth->guest() || !$request->user()->ability(explode('|', $roles), explode('|', $permissions), array('validate_all' => $validateAll))) {
-			abort(403);
+			return (new \Addons\Core\Controllers\Controller())->failure('auth.failure_permission');
+			//abort(403);
 		}
 
 		return $next($request);
