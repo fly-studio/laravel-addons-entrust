@@ -32,15 +32,13 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "illuminate/console": "~5.0",
-        "illuminate/support": "~5.0",
-        "illuminate/cache": "~5.0",
-        "addons/core": "dev-master"
+        "illuminate/console": "^5.4",
+        "illuminate/support": "^5.4",
+        "illuminate/cache": "^5.4",
+        "illuminate/database": "^5.4",
+        "addons/core": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.1",
-        "mockery/mockery": "dev-master",
-        "illuminate/database": "~5.0"
     },
     "autoload": {
         "classmap": [
