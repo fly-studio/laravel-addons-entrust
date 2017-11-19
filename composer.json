@@ -32,10 +32,6 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "illuminate/console": "^5.4",
-        "illuminate/support": "^5.4",
-        "illuminate/cache": "^5.4",
-        "illuminate/database": "^5.4",
         "addons/core": "^3.0"
     },
     "require-dev": {
