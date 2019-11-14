@@ -10,6 +10,7 @@ namespace Addons\Entrust\Traits;
  * @package Addons\Entrust
  */
 use Addons\Entrust\Helper;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
@@ -67,7 +68,7 @@ trait RoleTrait
             return $this->permissions()->get();
         }
 
-        return Cache::remember($cacheKey, Config::get('cache.ttl', 60), function () {
+        return Cache::remember($cacheKey, Config::get('cache.ttl'), function () {
             return $this->permissions()->get()->toArray();
         });
     }
@@ -135,7 +136,7 @@ trait RoleTrait
         }
 
         foreach ($this->cachedPermissions() as $perm) {
-            if (str_is($permission, $perm['name'])) {
+            if (Str::is($permission, $perm['name'])) {
                 return true;
             }
         }

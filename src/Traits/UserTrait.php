@@ -67,7 +67,7 @@ trait UserTrait
             return $this->roles()->get();
         }
 
-        return Cache::remember($cacheKey, Config::get('cache.ttl', 60), function () {
+        return Cache::remember($cacheKey, Config::get('cache.ttl'), function () {
             return $this->roles()->get()->toArray();
         });
     }
@@ -87,7 +87,7 @@ trait UserTrait
             return $this->permissions()->get();
         }
 
-        return Cache::remember($cacheKey, Config::get('cache.ttl', 60), function () {
+        return Cache::remember($cacheKey, Config::get('cache.ttl'), function () {
             return $this->permissions()->get()->toArray();
         });
     }
@@ -279,7 +279,7 @@ trait UserTrait
         $team = Helper::fetchTeam($team);
 
         foreach ($this->cachedPermissions() as $perm) {
-            if (Helper::isInSameTeam($perm, $team) && str_is($permission, $perm['name'])) {
+            if (Helper::isInSameTeam($perm, $team) && Str::is($permission, $perm['name'])) {
                 return true;
             }
         }
