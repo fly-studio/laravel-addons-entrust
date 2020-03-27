@@ -1,7 +1,7 @@
 {
     "name": "addons/entrust",
     "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
-    "homepage": "https://www.load-page.com",
+    "homepage": "https://www.load-page.com/",
     "keywords": ["acl", "authorization", "laravel","laratrust","permissions","php", "rbac","roles", "multiusers", "teams"],
     "license": "MIT",
     "support": {
